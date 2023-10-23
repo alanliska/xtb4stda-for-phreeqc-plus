@@ -9,6 +9,13 @@
 
 * alternative Makefile (for cross-compilation)
 
+# Compilation #
+
+cd src
+make
+
+The provided Makefile refers to aarch64 version. For the others (arm, x86, x86_64) change the compiler name. 
+
 ####
 
 This project provides `xtb4stda`, a program to calculate the ground state with
