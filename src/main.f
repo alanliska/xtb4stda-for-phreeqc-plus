@@ -82,7 +82,7 @@ c the basis setup stuff
 c OMP
       common /proc/ nproc
       integer nproc
-      integer TID, OMP_GET_NUM_THREADS, OMP_GET_THREAD_NUM
+C      integer TID, OMP_GET_NUM_THREADS, OMP_GET_THREAD_NUM
 
                                                       call timing(t0,w0)
       write(*,*)
@@ -119,6 +119,11 @@ c     write(*,'(7x, '' Licensed to CreativeQuantum GmbH, Berlin'')')
      .'' F. März, M. Checinski, S. Ehrlich, S. Spicher, '')')
       write(*,'(7x,
      .'' P. Pracht, E. Caldeweyher, S. Ehlert, and C. Bannwarth.'')')
+      write(*,*)
+      write(*,'(7x, '' Special version for Android (aarch64, pie)'')')
+      write(*,'(7x, '' linked with BLAS and LAPACK libraries'')')
+      write(*,'(7x, '' compiled by A. Liska & V. Ruzickova'')')
+      write(*,'(7x, '' on June 23, 2023.'')')
       write(*,*)
       write(*,'(7x, '' usage        :'')')
       write(*,'(7x, '' xtb4stda <coord_file> [options]'')')
@@ -169,15 +174,15 @@ c     write(*,'(7x,''are read from file <pcharge> (one line/charge)'')')
       write(*,'(7x,''total energies in Eh, gaps/HL energies in eV'')')
       write(*,'(7x,''please read REVISION and HOWTO files carefully'')')
 
-!$OMP PARALLEL PRIVATE(TID)
-      TID = OMP_GET_THREAD_NUM()
-      IF (TID .EQ. 0) THEN
-         nproc = OMP_GET_NUM_THREADS()
-         PRINT *, '============================='
-         PRINT *, ' # OMP threads =', nproc
-         PRINT *, '============================='
-      END IF
-!$OMP END PARALLEL
+C!$OMP PARALLEL PRIVATE(TID)
+C      TID = OMP_GET_THREAD_NUM()
+C      IF (TID .EQ. 0) THEN
+C         nproc = OMP_GET_NUM_THREADS()
+C         PRINT *, '============================='
+C         PRINT *, ' # OMP threads =', nproc
+C         PRINT *, '============================='
+C      END IF
+C!$OMP END PARALLEL
 
       xtb4stdahome=''
       call get_environment_variable('XTB4STDAHOME',xtb4stdahome)

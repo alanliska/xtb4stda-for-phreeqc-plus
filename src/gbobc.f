@@ -1386,7 +1386,7 @@ c          if(sasap.lt.tolsesp) return
        real*8 rcutn2,lrcut2,srcut2
        real*8 x,y,z,dr2
        integer ip,ip2,thrid,nproc
-       integer omp_get_thread_num,omp_get_max_threads
+C       integer omp_get_thread_num,omp_get_max_threads
        integer, allocatable :: npid(:)
        integer, allocatable :: plisttr(:,:,:)
        integer, allocatable :: nntmp(:)
@@ -1394,7 +1394,8 @@ c          if(sasap.lt.tolsesp) return
 
 c      setup a pairlist and compute pair distances of all neighbors
 c      within thresholds lrcut and srcut
-       nproc=OMP_GET_MAX_THREADS()
+C       nproc=OMP_GET_MAX_THREADS()
+       nproc=1
 
        allocate(plisttr(3,ntpair,nproc),nnls(nat,nat))
        allocate(nntmp(nat),npid(nproc))
@@ -1405,13 +1406,13 @@ c      within thresholds lrcut and srcut
 
        nnsas=0
        nnlists=0
-!$OMP PARALLEL PRIVATE ( i1,i2,x,y,z,dr2,ip,ip2,thrid,nntmp,nnls )
-       ip=0
-       ip2=0
-       nntmp=0
-       nnls=0
-       thrid=omp_get_thread_num() + 1
-!$OMP DO
+C!$OMP PARALLEL PRIVATE ( i1,i2,x,y,z,dr2,ip,ip2,thrid,nntmp,nnls )
+C       ip=0
+C       ip2=0
+C       nntmp=0
+C       nnls=0
+C       thrid=omp_get_thread_num() + 1
+C!$OMP DO
        do kk=1,ntpair
          i1=ppind(1,kk)
          i2=ppind(2,kk)
