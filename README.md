@@ -1,22 +1,24 @@
+# This is the XTB4STDA fork used in the mobile app PHREEQC plus
+
+## Changes in this fork
+
+* alternative Makefile (for cross-compilation)
+
+## Compilation
+
+```bash
+$ cd src
+make
+```
+
+The provided Makefile refers to aarch64 version. For the others (arm, x86, x86_64) change the compiler name. 
+
+# ORIGINAL DESCRIPTION:
+
 # sTDA-xTB for ground state calculations
 
 [![Build Status](https://travis-ci.com/grimme-lab/xtb4stda.svg?branch=master)](https://travis-ci.com/grimme-lab/xtb4stda)
 [![Build Status](https://github.com/grimme-lab/xtb4stda/workflows/CI/badge.svg)](https://github.com/grimme-lab/xtb4stda/actions)
-
-#### This is the XTB4STDA fork used in the mobile app PHREEQC plus ####
-
-# Changes in this fork #
-
-* alternative Makefile (for cross-compilation)
-
-# Compilation #
-
-cd src
-make
-
-The provided Makefile refers to aarch64 version. For the others (arm, x86, x86_64) change the compiler name. 
-
-####
 
 This project provides `xtb4stda`, a program to calculate the ground state with
 sTDA-xTB to be used in further [`stda`](https://github.com/grimme-lab/stda)
