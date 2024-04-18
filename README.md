@@ -11,7 +11,7 @@ $ cd src
 make
 ```
 
-The provided Makefile refers to aarch64 version. For the others (arm, x86, x86_64) change the compiler name. 
+The provided Makefile refers to arm version. For the others (aarch64, x86, x86_64) change the compiler name. 
 
 # ORIGINAL DESCRIPTION:
 

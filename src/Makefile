@@ -1,13 +1,13 @@
-FC = aarch64-linux-android-gfortran.exe
-F77 = aarch64-linux-android-gfortran.exe
+FC = arm-linux-androideabi-gfortran
+F77 = arm-linux-androideabi-gfortran
 
-FFLAGS =  -pie -ffree-line-length-none -fdefault-integer-8
+FFLAGS =  -pie -fPIC -ffree-line-length-none -fdefault-integer-8
 
-F77FLAGS = -pie -ffree-line-length-none -fdefault-integer-8
+F77FLAGS = -pie -fPIC -ffree-line-length-none -fdefault-integer-8
 
-LAPACKPATH = ../../../libs-aarch64/liblapack.a
+LAPACKPATH = ../../../libs-arm/liblapack.a
 
-BLASPATH = ../../../libs-aarch64/libblas.a
+BLASPATH = ../../../libs-arm/libblas.a
 
 LIB = $(LAPACKPATH) $(BLASPATH)
 
@@ -21,13 +21,13 @@ SOURCE = ncoord.o gbobc.o asym.o atovlp.o axis2.o axis3.o axis.o blckmgs.o block
 all:	libstda4xtb.a xtb4stda
          
 libstda4xtb.a:	$(SOURCE)
-	aarch64-linux-android-ar.exe qc libstda4xtb.a $(SOURCE)
-	aarch64-linux-android-ranlib.exe libstda4xtb.a
+	arm-linux-androideabi-ar qc libstda4xtb.a $(SOURCE)
+	arm-linux-androideabi-ranlib libstda4xtb.a
 
 xtb4stda:  main.o
 #	$(FC) $(FFLAGS) $(SOURCE) $(LIB) -static-libgfortran -o xtb4stda
-	$(FC) main.o -o xtb4stda ./libstda4xtb.a $(LIB) -pie
-	aarch64-linux-android-strip.exe xtb4stda
+	$(FC) main.o -o xtb4stda ./libstda4xtb.a $(LIB) -pie -fPIC
+	arm-linux-androideabi-strip xtb4stda
 
 clean: 
 	-/bin/rm *.o *.a *~ *.mod xtb4stda
