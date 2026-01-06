@@ -1,13 +1,13 @@
-FC = arm-linux-androideabi-gfortran
-F77 = arm-linux-androideabi-gfortran
+FC = /mnt/d/Android/GNU_10/arm-unknown-linux-androideabi/bin/arm-unknown-linux-androideabi-gfortran
+F77 = /mnt/d/Android/GNU_10/arm-unknown-linux-androideabi/bin/arm-unknown-linux-androideabi-gfortran
 
 FFLAGS =  -pie -fPIC -ffree-line-length-none -fdefault-integer-8
 
 F77FLAGS = -pie -fPIC -ffree-line-length-none -fdefault-integer-8
 
-LAPACKPATH = ../../../libs-arm/liblapack.a
+LAPACKPATH = ../../libs-arm/liblapack.a
 
-BLASPATH = ../../../libs-arm/libblas.a
+BLASPATH = ../../libs-arm/libblas.a
 
 LIB = $(LAPACKPATH) $(BLASPATH)
 
@@ -21,13 +21,13 @@ SOURCE = ncoord.o gbobc.o asym.o atovlp.o axis2.o axis3.o axis.o blckmgs.o block
 all:	libstda4xtb.a xtb4stda
          
 libstda4xtb.a:	$(SOURCE)
-	arm-linux-androideabi-ar qc libstda4xtb.a $(SOURCE)
-	arm-linux-androideabi-ranlib libstda4xtb.a
+	/mnt/d/Android/GNU_10/arm-unknown-linux-androideabi/bin/arm-unknown-linux-androideabi-ar qc libstda4xtb.a $(SOURCE)
+	/mnt/d/Android/GNU_10/arm-unknown-linux-androideabi/bin/arm-unknown-linux-androideabi-ranlib libstda4xtb.a
 
 xtb4stda:  main.o
 #	$(FC) $(FFLAGS) $(SOURCE) $(LIB) -static-libgfortran -o xtb4stda
-	$(FC) main.o -o xtb4stda ./libstda4xtb.a $(LIB) -pie -fPIC
-	arm-linux-androideabi-strip xtb4stda
+	$(FC) main.o -o xtb4stda ./libstda4xtb.a $(LIB) -pie -fPIC -static-libstdc++ -static-libgfortran -static-libgcc -Wl,-z,max-page-size=16384
+	/mnt/d/Android/GNU_10/arm-unknown-linux-androideabi/bin/arm-unknown-linux-androideabi-strip xtb4stda
 
 clean: 
 	-/bin/rm *.o *.a *~ *.mod xtb4stda
